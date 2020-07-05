@@ -3,7 +3,9 @@ import { Card, Button, Form } from 'react-bootstrap';
 import UserForm from '../components/UserForm';
 import { Link } from 'react-router-dom'
 
-const Login = () => {
+import { authenticateUser } from '../utils/api';
+
+const Login = (props) => {
 
     const [loginDetails, setLoginDetails] = useState({
         email: '',
@@ -26,9 +28,17 @@ const Login = () => {
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(loginDetails);
+        const response = await authenticateUser(loginDetails);
+        //console.log(response.data);
+        if (response.status === 200) {
+            props.updateAuthedUser(response.data);
+        }
+        else {
+            // onError(response.data)
+            alert('Invalid Credentials');
+        }
     }
 
     return (

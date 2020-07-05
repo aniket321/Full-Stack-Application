@@ -1,10 +1,23 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:4000/api/users/';
+const baseUrl = 'http://localhost:4000/api/users';
 
 export const getUsers = async () => {
     try {
         const response = await axios.get(baseUrl);
+        return response;
+    }
+    catch (error) {
+        return error.response;
+    }
+}
+
+export const authenticateUser = async (credentials) => {
+    try {
+        const response = await axios.post(`${baseUrl}/login`, {
+            email: credentials.email,
+            password: credentials.password,
+        })
         return response;
     }
     catch (error) {
@@ -21,22 +34,55 @@ export const getAuthedUser = async () => {
                 userToken: null,
                 userType: null,
             }
-            setAutherUser(user);
+            setLocalStorage(user);
             return user;
         }
-        return JSON.parse(authedUser);
+        else {
+            let id = JSON.parse(authedUser).id;
+            let userDetails = await getUserDetails(id);
+            return {
+                userDetails,
+                authedUser: JSON.parse(authedUser)
+            }
+        }
     }
     catch (error) {
         alert('Some error occured! Try again');
     }
 }
 
-const setAutherUser = async (user) => {
+export const getUserDetails = async (id) => {
     try {
+        const response = await axios.get(`${baseUrl}/${id}`)
+        return response.data;
+    }
+    catch (error) {
+        return error.response;
+    }
+}
+
+export const registerUser = async (userDetails) => {
+    try {
+        const response = await axios.post(baseUrl, userDetails)
+        return response;
+    }
+    catch (error) {
+        return error.response;
+    }
+}
+
+export const setLocalStorage = async (user) => {
+    try {
+        localStorage.clear();
         return localStorage.setItem('authedUser', JSON.stringify(user));
     }
     catch (error) {
         alert('Some error occured! Try again');
     }
+}
+
+
+export const clearLocalStorage = () => {
+    return localStorage.clear();
 }
 

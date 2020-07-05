@@ -3,9 +3,8 @@ import { Tabs, Tab } from 'react-bootstrap';
 import EmployeeDetailsCard from './EmployeeDetailsCard';
 import AdminEmployeeList from './AdminEmployeeList';
 
-const ControlledTabs = () => {
+const ControlledTabs = (props) => {
     const [key, setKey] = useState('Your Details');
-
     return (
         <Tabs
             id="controlled-tab-example"
@@ -13,7 +12,7 @@ const ControlledTabs = () => {
             onSelect={(k) => setKey(k)}
         >
             <Tab eventKey="Your Details" title="Your Details">
-                <EmployeeDetailsCard />
+                <EmployeeDetailsCard authedUserDetails={props.authedUserDetails} />
             </Tab>
             <Tab eventKey="Employee List" title="Employee List">
                 <AdminEmployeeList />

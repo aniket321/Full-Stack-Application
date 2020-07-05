@@ -25,54 +25,64 @@ const AdminUserForm = () => {
                     ...userDetials,
                     firstName: e.target.value,
                 })
+                break;
 
             case 'lastName':
                 setUserDetails({
                     ...userDetials,
                     lastName: e.target.value,
                 })
+                break
 
             case 'email':
                 setUserDetails({
                     ...userDetials,
                     email: e.target.value,
                 })
+                break
 
             case 'phoneNumber':
                 setUserDetails({
                     ...userDetials,
                     phoneNumber: e.target.value,
                 })
+                break
 
             case 'password':
                 setUserDetails({
                     ...userDetials,
                     password: e.target.value,
                 })
+                break
 
             case 'canRead':
                 setUserDetails({
                     ...userDetials,
                     canRead: !userDetials.canRead,
                 })
+                break
 
             case 'canUpdate':
                 setUserDetails({
                     ...userDetials,
                     canUpdate: !userDetials.canUpdate,
                 })
+                break
 
             case 'canDelete':
                 setUserDetails({
                     ...userDetials,
                     canDelete: !userDetials.canDelete,
                 })
+                break
 
             case 'canCreate':
                 setUserDetails({
                     ...userDetials,
                     canCreate: !userDetials.canCreate,
                 })
+                break
+
             default:
                 setUserDetails(userDetials)
         }

@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 
-const EmployeeDetailsCard = () => {
+const EmployeeDetailsCard = (props) => {
     const [key, setKey] = useState('home');
+    const { authedUserDetails } = props;
 
     return (
-        <Card className="text-center">
+        <Card>
             <Card.Body>
                 <Card.Text>
-                    Name: Aniket Hatti
+                    {`Name: ${authedUserDetails.firstName} ${authedUserDetails.lastName}`}
                 </Card.Text>
                 <Card.Text>
-                    Email: aniket@gmail.com
+                    {`Email: ${authedUserDetails.email}`}
                 </Card.Text>
                 <Card.Text>
-                    Phone Number: 12455
+                    {`Mobile: ${authedUserDetails.mobile}`}
+                </Card.Text>
+                <Card.Text>
+                    {authedUserDetails.isadmin === false ? `User Type: User` : `User Type: Admin`}
                 </Card.Text>
             </Card.Body>
         </Card>

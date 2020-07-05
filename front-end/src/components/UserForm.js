@@ -2,55 +2,76 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 
+import { registerUser } from '../utils/api';
+
 const UserForm = () => {
 
-    const [userDetials, setUserDetails] = useState({
+    const [userDetails, setUserDetails] = useState({
         firstName: '',
         lastName: '',
         email: '',
-        phoneNumber: '',
+        mobile: '',
         password: '',
     })
 
     const [toHome, setToHome] = useState(false);
 
-    const handleFirstNameChange = (e) => {
-        setUserDetails({
-            ...userDetials,
-            firstName: e.target.value,
-        })
-    }
+    const handleChange = (e, field) => {
+        switch (field) {
+            case 'firstName':
+                setUserDetails({
+                    ...userDetails,
+                    firstName: e.target.value,
+                })
+                break;
 
-    const handleLastNameChange = (e) => {
-        setUserDetails({
-            ...userDetials,
-            lastName: e.target.value,
-        })
-    }
+            case 'lastName':
+                setUserDetails({
+                    ...userDetails,
+                    lastName: e.target.value,
+                })
+                break;
 
-    const handleEmailChange = (e) => {
-        setUserDetails({
-            ...userDetials,
-            email: e.target.value,
-        })
-    }
+            case 'email':
+                setUserDetails({
+                    ...userDetails,
+                    email: e.target.value,
+                })
+                break;
 
-    const handleNumberChange = (e) => {
-        setUserDetails({
-            ...userDetials,
-            phoneNumber: e.target.value,
-        })
-    }
+            case 'mobile':
+                setUserDetails({
+                    ...userDetails,
+                    mobile: e.target.value,
+                })
+                break;
 
-    const handleSubmit = (e) => {
+            case 'password':
+                setUserDetails({
+                    ...userDetails,
+                    password: e.target.value,
+                })
+                break;
+
+            default:
+                setUserDetails(userDetails)
+        }
+
+    }
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(userDetials);
-        setUserDetails({
-            firstName: '',
-            lastName: '',
-            email: '',
-            phoneNumber: '',
-        })
+        const response = await registerUser(userDetails);
+        if (response.status === 201) {
+            if (JSON.parse(localStorage.getItem('authedUser')).id === null)
+                alert('Registerd! Please Login to continue')
+            else {
+                alert('Employee added successfully!!')
+            }
+        }
+        else {
+            // onError(response.data)
+            alert('Some error occured please try again');
+        }
         setToHome(true);
     }
 
@@ -66,7 +87,7 @@ const UserForm = () => {
                     required
                     type="text"
                     placeholder="First name"
-                    onChange={handleFirstNameChange}
+                    onChange={(e) => handleChange(e, 'firstName')}
                 />
             </Form.Group>
 
@@ -76,7 +97,7 @@ const UserForm = () => {
                     required
                     type="text"
                     placeholder="Last name"
-                    onChange={handleLastNameChange}
+                    onChange={(e) => handleChange(e, 'lastName')}
                 />
             </Form.Group>
 
@@ -86,7 +107,7 @@ const UserForm = () => {
                     type="email"
                     placeholder="Enter email"
                     required
-                    onChange={handleEmailChange}
+                    onChange={(e) => handleChange(e, 'email')}
                 />
             </Form.Group>
 
@@ -98,18 +119,19 @@ const UserForm = () => {
                     type="text"
                     maxLength="10"
                     placeholder="Phone Number"
-                    onChange={handleNumberChange}
+                    onChange={(e) => handleChange(e, 'mobile')}
                 />
             </Form.Group>
 
-            {/* <Form.Group controlId="formBasicPassword">
+            <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                     type="password"
                     placeholder="Password"
-                    
+                    minLength="8"
+                    onChange={(e) => handleChange(e, 'password')}
                 />
-            </Form.Group> */}
+            </Form.Group>
 
             <Button variant="primary" type="submit">
                 Submit
