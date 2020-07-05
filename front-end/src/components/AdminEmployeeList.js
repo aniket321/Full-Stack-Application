@@ -30,7 +30,7 @@ const AdminEmployeeList = (props) => {
     const handleDelete = async (employee) => {
         console.log(employee)
         const response = await deleteUser(employee._id);
-        if (response.status == 200) {
+        if (response.status === 200) {
             await fetchUsers();
         }
         else {
@@ -76,7 +76,7 @@ const AdminEmployeeList = (props) => {
                             </ul>
                             <Button
                                 className="mr-2"
-                                variant="primary"
+                                variant="success"
                                 as={Link}
                                 to={
                                     {
@@ -88,8 +88,8 @@ const AdminEmployeeList = (props) => {
                                 }
                             >Update</Button>
                             <Button
-                                disabled
-                                variant="danger"
+                                disabled={!employee.permissions.canDelete}
+                                variant="outline-danger"
                                 onClick={() => handleDelete(employee)}
                                 className="delete-btn"
                             >Delete</Button>

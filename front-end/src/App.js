@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import UserForm from './components/UserForm';
 import Nav from './components/Navigation';
 import TabBar from './components/TabBar';
 import Login from './screens/Login';
@@ -20,8 +19,6 @@ function App() {
         userToken: null,
         userType: null,
     })
-
-    console.log(authedUser)
 
     const [authedUserDetails, setAuthedUserDetails] = useState(null);
 

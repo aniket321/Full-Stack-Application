@@ -28,22 +28,34 @@ export const authenticateUser = async (credentials) => {
 export const getAuthedUser = async () => {
     try {
         let authedUser = localStorage.getItem('authedUser');
-        if (authedUser == null) {
+        if (authedUser === null) {
             let user = {
-                id: null,
-                userToken: null,
-                userType: null,
+                authedUser: {
+                    id: null,
+                    userToken: null,
+                    userType: null,
+                },
+                userDetails: null
             }
-            setLocalStorage(user);
+            await setLocalStorage(user.authedUser);
             return user;
         }
         else {
             let id = JSON.parse(authedUser).id;
-            let userDetails = await getUserDetails(id);
-            return {
-                userDetails,
-                authedUser: JSON.parse(authedUser)
+            if (id === null) {
+                return {
+                    userDetails: null,
+                    authedUser: JSON.parse(authedUser)
+                }
             }
+            else {
+                let userDetails = await getUserDetails(id);
+                return {
+                    userDetails,
+                    authedUser: JSON.parse(authedUser)
+                }
+            }
+
         }
     }
     catch (error) {
@@ -62,7 +74,6 @@ export const getUserDetails = async (id) => {
 }
 
 export const registerUser = async (userDetails) => {
-    console.log(userDetails)
     try {
         const response = await axios.post(baseUrl, userDetails)
         return response;
@@ -97,7 +108,7 @@ export const deleteUser = async (id) => {
 
 export const setLocalStorage = async (user) => {
     try {
-        localStorage.clear();
+        await localStorage.clear();
         return localStorage.setItem('authedUser', JSON.stringify(user));
     }
     catch (error) {

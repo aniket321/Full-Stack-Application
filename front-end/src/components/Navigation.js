@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Navbar, Nav, Form, Button, FormControl } from 'react-bootstrap';
-import { Link, Redirect } from 'react-router-dom'
+import React from 'react';
+import { Navbar, Nav, Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
 
 const Navigation = (props) => {
 

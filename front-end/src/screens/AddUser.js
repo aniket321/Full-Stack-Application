@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Card, Button, Form } from 'react-bootstrap';
+import React from 'react';
+import { Card } from 'react-bootstrap';
 import UserForm from '../components/UserForm';
 import AdminUserForm from '../components/AdminUserForm';
 
@@ -14,7 +14,7 @@ const AddUser = (props) => {
         authedUserDetails.isadmin === false ?
             (
                 <Card>
-                    <Card.Header as="h5">Add Employee</Card.Header>
+                    <Card.Header as="h5" style={{ backgroundColor: "#343A40", color: "#FFF" }}>Add Employee</Card.Header>
                     <Card.Body>
                         <UserForm />
                     </Card.Body>
@@ -22,7 +22,7 @@ const AddUser = (props) => {
             ) :
             (
                 <Card>
-                    <Card.Header as="h5">Add Employee</Card.Header>
+                    <Card.Header as="h5" style={{ backgroundColor: "#343A40", color: "#FFF" }}>Add Employee</Card.Header>
                     <Card.Body>
                         <AdminUserForm />
                     </Card.Body>

@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import React from 'react';
+import { Card } from 'react-bootstrap';
 
 const EmployeeDetailsCard = (props) => {
-    const [key, setKey] = useState('home');
     const { authedUserDetails } = props;
 
     return (

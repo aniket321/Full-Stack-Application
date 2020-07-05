@@ -93,7 +93,7 @@ const UserUpdateModal = (props) => {
 
     return (
         <Card>
-            <Card.Header as="h5">Update</Card.Header>
+            <Card.Header as="h5" style={{ backgroundColor: "#343A40", color: "#FFF" }}>Update</Card.Header>
             <Card.Body>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group>
@@ -154,7 +154,7 @@ const UserUpdateModal = (props) => {
                         />
                     </Form.Group>
 
-                    <Button variant="primary" type="submit">
+                    <Button variant="success" type="submit">
                         Submit
                     </Button>
                 </Form>
