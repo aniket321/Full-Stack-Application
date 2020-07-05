@@ -65,7 +65,7 @@ const Login = () => {
                     </Button>
                 </Form>
                 <Link to={`/register`}>
-                    <Card.Link>Not an existing user, Register here!</Card.Link>
+                    Not an existing user, Register here!
                 </Link>
             </Card.Body>
         </Card>
