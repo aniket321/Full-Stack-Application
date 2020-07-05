@@ -10,14 +10,14 @@ const Navigation = (props) => {
 
 
     return (
-        <Navbar bg="light" variant="light">
+        <Navbar bg="dark" variant="dark">
             <Navbar.Brand>Employee Management App</Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link as={Link} to="/">Home</Nav.Link>
                 <Nav.Link as={Link} to="/add">Add Employee</Nav.Link>
             </Nav>
             <Form inline>
-                <Button variant="outline-primary" onClick={logout} as={Link} to="/">Logout</Button>
+                <Button variant="success" onClick={logout} as={Link} to="/">Logout</Button>
             </Form>
         </Navbar>
     )

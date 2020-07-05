@@ -111,7 +111,7 @@ const AdminUpdateModal = (props) => {
 
         const response = await updateUserDetails(newUser, employee._id, authedUserDetails._id);
         if (response.status === 200) {
-            alert('updated');
+            //alert('updated');
             setToHome(true);
         }
         else {

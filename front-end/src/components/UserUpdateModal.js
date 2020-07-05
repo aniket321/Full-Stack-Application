@@ -146,6 +146,7 @@ const UserUpdateModal = (props) => {
                     <Form.Group>
                         <Form.Label>Password</Form.Label>
                         <Form.Control
+                            required
                             type="password"
                             placeholder="Password"
                             minLength="8"

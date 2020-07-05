@@ -31,19 +31,17 @@ const Login = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await authenticateUser(loginDetails);
-        //console.log(response.data);
         if (response.status === 200) {
             props.updateAuthedUser(response.data);
         }
         else {
-            // onError(response.data)
             alert('Invalid Credentials');
         }
     }
 
     return (
         <Card>
-            <Card.Header as="h5">Login</Card.Header>
+            <Card.Header as="h5" style={{ backgroundColor: "#343A40", color: "#FFF" }}>Login</Card.Header>
             <Card.Body>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group>
@@ -70,11 +68,11 @@ const Login = (props) => {
                             value={loginDetails.password}
                         />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" type="submit" className="mb-3">
                         Submit
                     </Button>
                 </Form>
-                <Link to={`/register`}>
+                <Link to={`/register`} style={{ color: "black", textDecoration: "underline" }}>
                     Not an existing user, Register here!
                 </Link>
             </Card.Body>

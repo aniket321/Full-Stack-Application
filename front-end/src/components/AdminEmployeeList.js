@@ -45,49 +45,56 @@ const AdminEmployeeList = (props) => {
     return (
         <>
             {employeeList.map(employee => (
-                <Card key={employee._id}>
-                    <Card.Body>
-                        <Card.Text>
-                            {`Name: ${employee.firstName} ${employee.lastName}`}
+                employee.isadmin === false && (
+                    <Card key={employee._id}>
+                        <Card.Body>
+                            <Card.Text>
+                                {`Name: ${employee.firstName} ${employee.lastName}`}
+                            </Card.Text>
+                            <Card.Text>
+                                {`Email: ${employee.email}`}
+                            </Card.Text>
+                            <Card.Text>
+                                {`Mobile: ${employee.mobile}`}
+                            </Card.Text>
+                            <Card.Text>
+                                Permissions:
                         </Card.Text>
-                        <Card.Text>
-                            {`Email: ${employee.email}`}
-                        </Card.Text>
-                        <Card.Text>
-                            {`Mobile: ${employee.mobile}`}
-                        </Card.Text>
-                        <Card.Text>
-                            Permissions:
-                        </Card.Text>
-                        <ul>
-                            {employee.permissions.canRead && (
-                                <li>Can View Employee List</li>
-                            )}
-                            {employee.permissions.canCreate && (
-                                <li>Can add a new Employee</li>
-                            )}
-                            {employee.permissions.canUpdate && (
-                                <li>Can Update Employee</li>
-                            )}
-                            {employee.permissions.canDelete && (
-                                <li>Can Delete Employee</li>
-                            )}
-                        </ul>
-                        <Button
-                            variant="primary"
-                            as={Link}
-                            to={
-                                {
-                                    pathname: authedUserDetails.isadmin === false ? "/user-update" : "/admin-update",
-                                    state: {
-                                        employee
+                            <ul>
+                                {employee.permissions.canRead && (
+                                    <li>Can View Employee List</li>
+                                )}
+                                {employee.permissions.canCreate && (
+                                    <li>Can add a new Employee</li>
+                                )}
+                                {employee.permissions.canUpdate && (
+                                    <li>Can Update Employee</li>
+                                )}
+                                {employee.permissions.canDelete && (
+                                    <li>Can Delete Employee</li>
+                                )}
+                            </ul>
+                            <Button
+                                variant="primary"
+                                as={Link}
+                                to={
+                                    {
+                                        pathname: authedUserDetails.isadmin === false ? "/user-update" : "/admin-update",
+                                        state: {
+                                            employee
+                                        }
                                     }
                                 }
-                            }
-                        >Update</Button>
-                        <Button variant="danger" onClick={() => handleDelete(employee)}>Delete</Button>
-                    </Card.Body>
-                </Card>
+                            >Update</Button>
+                            <Button
+                                disabled
+                                variant="danger"
+                                onClick={() => handleDelete(employee)}
+                                className="delete-btn"
+                            >Delete</Button>
+                        </Card.Body>
+                    </Card>
+                )
             ))}
         </>
     );

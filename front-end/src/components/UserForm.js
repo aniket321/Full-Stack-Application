@@ -130,6 +130,7 @@ const UserForm = () => {
             <Form.Group>
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                    required
                     type="password"
                     placeholder="Password"
                     minLength="8"
@@ -137,7 +138,7 @@ const UserForm = () => {
                 />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button variant="success" type="submit">
                 Submit
             </Button>
         </Form>

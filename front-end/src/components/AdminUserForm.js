@@ -196,7 +196,7 @@ const AdminUserForm = () => {
                     />
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button variant="success" type="submit">
                     Submit
                 </Button>
             </Form>

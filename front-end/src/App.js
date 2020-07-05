@@ -21,6 +21,8 @@ function App() {
         userType: null,
     })
 
+    console.log(authedUser)
+
     const [authedUserDetails, setAuthedUserDetails] = useState(null);
 
     useEffect(() => {
