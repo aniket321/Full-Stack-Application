@@ -10,7 +10,7 @@ const Register = () => {
             <Card.Body>
                 <UserForm />
                 <br />
-                <Link to="/">Go Back</Link>
+                <Link to="/" style={{ color: "black", textDecoration: "underline" }}>Go Back</Link>
             </Card.Body>
         </Card>
     );

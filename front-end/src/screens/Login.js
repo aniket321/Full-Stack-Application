@@ -68,7 +68,7 @@ const Login = (props) => {
                             value={loginDetails.password}
                         />
                     </Form.Group>
-                    <Button variant="primary" type="submit" className="mb-3">
+                    <Button variant="success" type="submit" className="mb-3">
                         Submit
                     </Button>
                 </Form>

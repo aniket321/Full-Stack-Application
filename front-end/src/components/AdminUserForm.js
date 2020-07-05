@@ -110,7 +110,13 @@ const AdminUserForm = () => {
             setToHome(true);
         }
         else {
-            alert('Some error occured please try again');
+            if (response.data.name === 'MongoError') {
+                alert('User with same email already exist! Use some other email')
+            }
+            else {
+                alert('Some error occured please try again');
+            }
+
         }
 
     }

@@ -75,6 +75,7 @@ const AdminEmployeeList = (props) => {
                                 )}
                             </ul>
                             <Button
+                                className="mr-2"
                                 variant="primary"
                                 as={Link}
                                 to={

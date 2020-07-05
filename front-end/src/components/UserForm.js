@@ -71,10 +71,18 @@ const UserForm = () => {
         }
         const response = await registerUser(newUser);
         if (response.status === 201) {
+            if (JSON.parse(localStorage.getItem('authedUser')).id === null)
+                alert('Registerd! Please Login to continue')
             setToHome(true);
         }
         else {
-            alert('Some error occured please try again');
+            if (response.data.name === 'MongoError') {
+                alert('User with same email already exist! Use some other email')
+            }
+            else {
+                alert('Some error occured please try again');
+            }
+
         }
 
     }
