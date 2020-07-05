@@ -13,6 +13,13 @@ code {
 }
 
 .container{
-    width: "50%";
+    width: 50%;
     margin-top: 5rem;
+}
+
+.tab-container{
+    margin-top: 2rem;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
 }

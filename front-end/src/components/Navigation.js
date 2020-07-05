@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, Form, Button, FormControl } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 const Navigation = (props) => {
 
     const logout = () => {
         props.handleLogout();
     }
+
 
     return (
         <Navbar bg="light" variant="light">
@@ -16,7 +17,7 @@ const Navigation = (props) => {
                 <Nav.Link as={Link} to="/add">Add Employee</Nav.Link>
             </Nav>
             <Form inline>
-                <Button variant="outline-primary" onClick={logout}>Logout</Button>
+                <Button variant="outline-primary" onClick={logout} as={Link} to="/">Logout</Button>
             </Form>
         </Navbar>
     )

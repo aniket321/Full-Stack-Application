@@ -85,6 +85,16 @@ export const updateUserDetails = async (userDetails, id, updatorId) => {
     }
 }
 
+export const deleteUser = async (id) => {
+    try {
+        const response = await axios.delete(`${baseUrl}/${id}`)
+        return response;
+    }
+    catch (error) {
+        return error.response;
+    }
+}
+
 export const setLocalStorage = async (user) => {
     try {
         localStorage.clear();

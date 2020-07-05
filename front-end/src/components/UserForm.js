@@ -71,16 +71,12 @@ const UserForm = () => {
         }
         const response = await registerUser(newUser);
         if (response.status === 201) {
-            if (JSON.parse(localStorage.getItem('authedUser')).id === null)
-                alert('Registerd! Please Login to continue')
-            else {
-                alert('Employee added successfully!!')
-            }
+            setToHome(true);
         }
         else {
             alert('Some error occured please try again');
         }
-        setToHome(true);
+
     }
 
     if (toHome) {

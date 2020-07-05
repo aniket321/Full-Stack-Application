@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 import EmployeeDetailsCard from './EmployeeDetailsCard';
 import AdminEmployeeList from './AdminEmployeeList';
-import UserEmployeeList from './UserEmployeeList';
 
 const ControlledTabs = (props) => {
     const [key, setKey] = useState('Your Details');

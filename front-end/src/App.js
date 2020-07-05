@@ -56,8 +56,8 @@ function App() {
 
     return (
         <Router>
-            <div className='container'>
-                {authedUser.id === null || authedUserDetails === null ? (
+            {authedUser.id === null || authedUserDetails === null ? (
+                <div className="container">
                     <Switch>
                         <Route exact path='/' render={() => (
                             <Login
@@ -67,9 +67,11 @@ function App() {
                         />)
                         <Route exact path="/register" component={Register} />
                     </Switch>
-                ) : (
-                        <>
-                            <Nav handleLogout={handleLogout} />
+                </div>
+            ) : (
+                    <>
+                        <Nav handleLogout={handleLogout} />
+                        <div className="tab-container">
                             <Switch>
                                 <Route exact path='/' render={() => (
                                     <TabBar
@@ -99,9 +101,10 @@ function App() {
                                 />
                                 {/* <Route component={Error} /> */}
                             </Switch>
-                        </>
-                    )}
-            </div>
+                        </div>
+                    </>
+                )}
+
         </Router>
     );
 }
