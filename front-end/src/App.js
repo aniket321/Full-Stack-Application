@@ -6,6 +6,8 @@ import Login from './screens/Login';
 import Register from './screens/Register';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
+// import TrialModal from './components/TrialModal';
+
 function App() {
 
     const [authedUser, setAutherUser] = useState({
@@ -15,6 +17,7 @@ function App() {
     })
 
     return (
+        // <TrialModal />
         <Router>
             <div className='container'>
                 {authedUser.id === null ? (
