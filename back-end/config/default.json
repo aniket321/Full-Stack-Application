@@ -1,0 +1,4 @@
+{
+    "PORT": "4000",
+    "ATLAS_URI": "mongodb+srv://test:test123@cluster0-ptnjs.mongodb.net/userdb?retryWrites=true&w=majority"
+}
