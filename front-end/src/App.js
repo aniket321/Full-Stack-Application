@@ -7,19 +7,22 @@ import AddUser from './screens/AddUser';
 import AdminUpdateModal from './components/AdminUpdateModal';
 import UserUpdateModal from './components/UserUpdateModal';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
 import { getAuthedUser, setLocalStorage } from './utils/api';
-
-// import TrialModal from './components/TrialModal';
 
 function App() {
 
+    /**
+    * @description state to store id, token of current loggedin user
+    */
     const [authedUser, setAutherUser] = useState({
         id: null,
         userToken: null,
         userType: null,
     })
 
+    /**
+    * @description state to store details of current loggedin user
+    */
     const [authedUserDetails, setAuthedUserDetails] = useState(null);
 
     useEffect(() => {
@@ -31,6 +34,9 @@ function App() {
         getUser();
     }, [])
 
+    /**
+    * @description function to update state when user clicks on login button
+    */
     const updateAuthedUser = async (response) => {
         let user = {
             id: response.user._id,
@@ -42,6 +48,9 @@ function App() {
         await setAutherUser(user);
     }
 
+    /**
+    * @description function to clear the state when user clicks on logout button
+    */
     const handleLogout = async () => {
         let user = {
             id: null,

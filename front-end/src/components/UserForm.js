@@ -6,6 +6,9 @@ import { registerUser } from '../utils/api';
 
 const UserForm = () => {
 
+    /**
+    * @description state to store data of input fields
+    */
     const [userDetails, setUserDetails] = useState({
         firstName: '',
         lastName: '',
@@ -14,8 +17,14 @@ const UserForm = () => {
         password: '',
     })
 
+    /**
+    * @description state to manage redirect to home page
+    */
     const [toHome, setToHome] = useState(false);
 
+    /**
+    * @description function to handle change on input fields
+    */
     const handleChange = (e, field) => {
         switch (field) {
             case 'firstName':
@@ -58,6 +67,10 @@ const UserForm = () => {
         }
 
     }
+
+    /**
+    * @description function to handle submit
+    */
     const handleSubmit = async (e) => {
         e.preventDefault();
         let newUser = {

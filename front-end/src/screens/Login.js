@@ -6,11 +6,17 @@ import { authenticateUser } from '../utils/api';
 
 const Login = (props) => {
 
+    /**
+    * @description state to store credentials of the user
+    */
     const [loginDetails, setLoginDetails] = useState({
         email: '',
         password: '',
     })
 
+    /**
+    * @description function to handle changes in the input fields
+    */
     const handleChange = (e, field) => {
         if (field === 'email') {
             setLoginDetails({
@@ -27,6 +33,9 @@ const Login = (props) => {
         }
     }
 
+    /**
+    * @description function to handle submit
+    */
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await authenticateUser(loginDetails);

@@ -5,6 +5,9 @@ import { registerUser } from '../utils/api';
 
 const AdminUserForm = () => {
 
+    /**
+    * @description state to store input fields data
+    */
     const [userDetails, setUserDetails] = useState({
         firstName: '',
         lastName: '',
@@ -17,8 +20,14 @@ const AdminUserForm = () => {
         canCreate: false,
     })
 
+    /**
+    * @description state to manage redirect to home page
+    */
     const [toHome, setToHome] = useState(false);
 
+    /**
+    * @description function to handle changes on the input fields
+    */
     const handleChange = (e, field) => {
         switch (field) {
             case 'firstName':
@@ -90,6 +99,9 @@ const AdminUserForm = () => {
 
     }
 
+    /**
+    * @description function to handle submit
+    */
     const handleSubmit = async (e) => {
         e.preventDefault();
         let newUser = {

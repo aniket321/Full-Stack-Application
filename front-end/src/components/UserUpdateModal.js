@@ -8,6 +8,9 @@ const UserUpdateModal = (props) => {
     const { employee } = props.location.state;
     const { authedUserDetails } = props;
 
+    /**
+    * @description state to store data of input fields
+    */
     const [userDetails, setUserDetails] = useState({
         firstName: employee.firstName,
         lastName: employee.lastName,
@@ -16,8 +19,14 @@ const UserUpdateModal = (props) => {
         password: employee.password,
     })
 
+    /**
+    * @description state to manage redirect to home page
+    */
     const [toHome, setToHome] = useState(false);
 
+    /**
+    * @description function to handle changes on input field
+    */
     const handleChange = (e, field) => {
         switch (field) {
             case 'firstName':
@@ -60,6 +69,10 @@ const UserUpdateModal = (props) => {
         }
 
     }
+
+    /**
+    * @description function to handle submit
+    */
     const handleSubmit = async (e) => {
         e.preventDefault();
         let newUser = {

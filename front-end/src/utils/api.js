@@ -1,7 +1,9 @@
 import axios from 'axios';
-
 const baseUrl = 'http://localhost:4000/api/users';
 
+/**
+* @description function to get list of all users from the DB
+*/
 export const getUsers = async () => {
     try {
         const response = await axios.get(baseUrl);
@@ -12,6 +14,9 @@ export const getUsers = async () => {
     }
 }
 
+/**
+* @description function to authenticate user
+*/
 export const authenticateUser = async (credentials) => {
     try {
         const response = await axios.post(`${baseUrl}/login`, {
@@ -25,6 +30,9 @@ export const authenticateUser = async (credentials) => {
     }
 }
 
+/**
+* @description function to get the loggedin user from the localstorage
+*/
 export const getAuthedUser = async () => {
     try {
         let authedUser = localStorage.getItem('authedUser');
@@ -63,6 +71,9 @@ export const getAuthedUser = async () => {
     }
 }
 
+/**
+* @description function to get details of particular user
+*/
 export const getUserDetails = async (id) => {
     try {
         const response = await axios.get(`${baseUrl}/${id}`)
@@ -73,6 +84,10 @@ export const getUserDetails = async (id) => {
     }
 }
 
+
+/**
+* @description function to register a user
+*/
 export const registerUser = async (userDetails) => {
     try {
         const response = await axios.post(baseUrl, userDetails)
@@ -83,6 +98,9 @@ export const registerUser = async (userDetails) => {
     }
 }
 
+/**
+* @description function to update details of a user
+*/
 export const updateUserDetails = async (userDetails, id, updatorId) => {
     try {
         const response = await axios.put(`${baseUrl}/${id}`, {
@@ -96,6 +114,9 @@ export const updateUserDetails = async (userDetails, id, updatorId) => {
     }
 }
 
+/**
+* @description function to delete a user
+*/
 export const deleteUser = async (id) => {
     try {
         const response = await axios.delete(`${baseUrl}/${id}`)
@@ -106,6 +127,9 @@ export const deleteUser = async (id) => {
     }
 }
 
+/**
+* @description function to set the localstorage
+*/
 export const setLocalStorage = async (user) => {
     try {
         await localStorage.clear();

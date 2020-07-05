@@ -6,10 +6,15 @@ import { getUsers, deleteUser } from '../utils/api';
 
 const AdminEmployeeList = (props) => {
 
+    /**
+    * @description state to store list of all users
+    */
     const [employeeList, setEmployeeList] = useState([]);
-
     const { authedUserDetails } = props;
 
+    /**
+    * @description function to fetch all users
+    */
     async function fetchUsers() {
         const response = await getUsers();
         if (response.status === 200) {
@@ -25,6 +30,9 @@ const AdminEmployeeList = (props) => {
         fetchUsers();
     }, []);
 
+    /**
+    * @description function to handle delete button
+    */
     const handleDelete = async (employee) => {
         const response = await deleteUser(employee._id);
         if (response.status === 200) {
