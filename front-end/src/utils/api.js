@@ -62,8 +62,22 @@ export const getUserDetails = async (id) => {
 }
 
 export const registerUser = async (userDetails) => {
+    console.log(userDetails)
     try {
         const response = await axios.post(baseUrl, userDetails)
+        return response;
+    }
+    catch (error) {
+        return error.response;
+    }
+}
+
+export const updateUserDetails = async (userDetails, id, updatorId) => {
+    try {
+        const response = await axios.put(`${baseUrl}/${id}`, {
+            ...userDetails,
+            id: updatorId
+        })
         return response;
     }
     catch (error) {

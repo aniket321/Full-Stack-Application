@@ -1,40 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Button, Form, Modal } from 'react-bootstrap';
-import AdminUserForm from './AdminUserForm';
+import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import { getUsers } from '../utils/api';
 
-function UpdateModal(props) {
-    return (
-        <Modal
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
-            {/* <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    Update User Details
-                </Modal.Title>
-            </Modal.Header> */}
-            <Modal.Body>
-                <AdminUserForm />
-            </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
-        </Modal>
-    );
-}
+const AdminEmployeeList = (props) => {
 
-
-const AdminEmployeeList = () => {
-    const [modalShow, setModalShow] = useState(false);
     const [employeeList, setEmployeeList] = useState([]);
 
-    const handleModal = () => {
-        setModalShow(!modalShow);
-    }
+    const { authedUserDetails } = props;
 
     useEffect(() => {
         console.log('admin list useeffect');
@@ -67,15 +41,20 @@ const AdminEmployeeList = () => {
                         <Card.Text>
                             {`Mobile: ${employee.mobile}`}
                         </Card.Text>
-                        <Button variant="primary" onClick={handleModal}>Update</Button>
+                        <Button
+                            variant="primary"
+                            as={Link}
+                            to={
+                                {
+                                    pathname: authedUserDetails.isadmin === false ? "/user-update" : "/admin-update",
+                                    state: {
+                                        employee
+                                    }
+                                }
+                            }
+                        >Update</Button>
                         <Button variant="danger">Delete</Button>
                     </Card.Body>
-                    {modalShow && (
-                        <UpdateModal
-                            show={modalShow}
-                            onHide={() => setModalShow(false)}
-                        />
-                    )}
                 </Card>
             ))}
         </>

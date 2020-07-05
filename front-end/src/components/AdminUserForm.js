@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Card, Button, Form } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
+import { registerUser } from '../utils/api';
 
 const AdminUserForm = () => {
 
-    const [userDetials, setUserDetails] = useState({
+    const [userDetails, setUserDetails] = useState({
         firstName: '',
         lastName: '',
         email: '',
-        phoneNumber: '',
+        mobile: '',
         password: '',
         canRead: false,
         canUpdate: false,
@@ -22,87 +23,99 @@ const AdminUserForm = () => {
         switch (field) {
             case 'firstName':
                 setUserDetails({
-                    ...userDetials,
+                    ...userDetails,
                     firstName: e.target.value,
                 })
                 break;
 
             case 'lastName':
                 setUserDetails({
-                    ...userDetials,
+                    ...userDetails,
                     lastName: e.target.value,
                 })
                 break
 
             case 'email':
                 setUserDetails({
-                    ...userDetials,
+                    ...userDetails,
                     email: e.target.value,
                 })
                 break
 
-            case 'phoneNumber':
+            case 'mobile':
                 setUserDetails({
-                    ...userDetials,
-                    phoneNumber: e.target.value,
+                    ...userDetails,
+                    mobile: e.target.value,
                 })
                 break
 
             case 'password':
                 setUserDetails({
-                    ...userDetials,
+                    ...userDetails,
                     password: e.target.value,
                 })
                 break
 
             case 'canRead':
                 setUserDetails({
-                    ...userDetials,
-                    canRead: !userDetials.canRead,
+                    ...userDetails,
+                    canRead: !userDetails.canRead,
                 })
                 break
 
             case 'canUpdate':
                 setUserDetails({
-                    ...userDetials,
-                    canUpdate: !userDetials.canUpdate,
+                    ...userDetails,
+                    canUpdate: !userDetails.canUpdate,
                 })
                 break
 
             case 'canDelete':
                 setUserDetails({
-                    ...userDetials,
-                    canDelete: !userDetials.canDelete,
+                    ...userDetails,
+                    canDelete: !userDetails.canDelete,
                 })
                 break
 
             case 'canCreate':
                 setUserDetails({
-                    ...userDetials,
-                    canCreate: !userDetials.canCreate,
+                    ...userDetails,
+                    canCreate: !userDetails.canCreate,
                 })
                 break
 
             default:
-                setUserDetails(userDetials)
+                setUserDetails(userDetails)
         }
 
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(userDetials);
-        setUserDetails({
-            firstName: '',
-            lastName: '',
-            email: '',
-            phoneNumber: '',
-            password: '',
-            canRead: false,
-            canUpdate: false,
-            canDelete: false,
-            canCreate: false,
-        })
+        let newUser = {
+            firstName: userDetails.firstName,
+            lastName: userDetails.lastName,
+            email: userDetails.email,
+            mobile: userDetails.mobile,
+            password: userDetails.password,
+            permissions: {
+                canRead: userDetails.canRead,
+                canUpdate: userDetails.canUpdate,
+                canDelete: userDetails.canDelete,
+                canCreate: userDetails.canCreate,
+            }
+        }
+        const response = await registerUser(newUser);
+        if (response.status === 201) {
+            if (JSON.parse(localStorage.getItem('authedUser')).id === null)
+                alert('Registerd! Please Login to continue')
+            else {
+                alert('Employee added successfully!!')
+            }
+        }
+        else {
+            alert('Some error occured please try again');
+        }
         setToHome(true);
     }
 
@@ -111,87 +124,87 @@ const AdminUserForm = () => {
     }
 
     return (
-        <Card>
-            <Card.Header as="h5">Add New User</Card.Header>
-            <Card.Body>
-                <Form onSubmit={handleSubmit}>
-                    <Form.Group>
-                        <Form.Label>First name</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            placeholder="First name"
-                            onChange={(e) => handleChange(e, 'firstName')}
-                        />
-                    </Form.Group>
+        <Card.Body>
+            <Form onSubmit={handleSubmit}>
+                <Form.Group>
+                    <Form.Label>First name</Form.Label>
+                    <Form.Control
+                        required
+                        type="text"
+                        placeholder="First name"
+                        onChange={(e) => handleChange(e, 'firstName')}
+                    />
+                </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Last name</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            placeholder="Last name"
-                            onChange={(e) => handleChange(e, 'lastName')}
-                        />
-                    </Form.Group>
+                <Form.Group>
+                    <Form.Label>Last name</Form.Label>
+                    <Form.Control
+                        required
+                        type="text"
+                        placeholder="Last name"
+                        onChange={(e) => handleChange(e, 'lastName')}
+                    />
+                </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control
-                            type="email"
-                            placeholder="Enter email"
-                            required
-                            onChange={(e) => handleChange(e, 'email')}
-                        />
-                    </Form.Group>
+                <Form.Group>
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control
+                        type="email"
+                        placeholder="Enter email"
+                        required
+                        onChange={(e) => handleChange(e, 'email')}
+                    />
+                </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Phone Number</Form.Label>
-                        <Form.Control
-                            required
-                            pattern="[0-9]*"
-                            type="text"
-                            maxLength="10"
-                            placeholder="Phone Number"
-                            onChange={(e) => handleChange(e, 'phoneNumber')}
-                        />
-                    </Form.Group>
+                <Form.Group>
+                    <Form.Label>Phone Number</Form.Label>
+                    <Form.Control
+                        required
+                        pattern="[0-9]*"
+                        type="text"
+                        maxLength="10"
+                        placeholder="Phone Number"
+                        onChange={(e) => handleChange(e, 'mobile')}
+                    />
+                </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Permissions</Form.Label>
-                        <Form.Check inline
-                            label="List Employees"
-                            onChange={(e) => handleChange(e, 'canRead')}
-                        />
-                        <Form.Check inline
-                            label="Update Employee"
-                            onChange={(e) => handleChange(e, 'canUpdate')}
-                        />
-                        <Form.Check inline
-                            label="Delete Employee"
-                            onChange={(e) => handleChange(e, 'canDelete')}
-                        />
-                        <Form.Check inline
-                            label="Add Employee"
-                            onChange={(e) => handleChange(e, 'canAdd')}
-                        />
-                    </Form.Group>
+                <Form.Group>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                        required
+                        type="password"
+                        placeholder="Password"
+                        minLength="8"
+                        onChange={(e) => handleChange(e, 'password')}
+                    />
+                </Form.Group>
 
-                    {/* <Form.Group controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    
-                />
-            </Form.Group> */}
+                <Form.Group>
+                    <Form.Label>Permissions:</Form.Label>
+                    <br />
+                    <Form.Check inline
+                        label="List Employees"
+                        onChange={(e) => handleChange(e, 'canRead')}
+                    />
+                    <Form.Check inline
+                        label="Update Employee"
+                        onChange={(e) => handleChange(e, 'canUpdate')}
+                    />
+                    <Form.Check inline
+                        label="Delete Employee"
+                        onChange={(e) => handleChange(e, 'canDelete')}
+                    />
+                    <Form.Check inline
+                        label="Add Employee"
+                        onChange={(e) => handleChange(e, 'canCreate')}
+                    />
+                </Form.Group>
 
-                    <Button variant="primary" type="submit">
-                        Submit
-            </Button>
-                </Form>
-            </Card.Body>
-        </Card>
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Form>
+        </Card.Body>
     );
 }
 

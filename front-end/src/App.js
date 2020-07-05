@@ -5,6 +5,8 @@ import TabBar from './components/TabBar';
 import Login from './screens/Login';
 import Register from './screens/Register';
 import AddUser from './screens/AddUser';
+import AdminUpdateModal from './components/AdminUpdateModal';
+import UserUpdateModal from './components/UserUpdateModal';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import { getAuthedUser, setLocalStorage } from './utils/api';
@@ -78,6 +80,20 @@ function App() {
                                 <Route exact path='/add' render={() => (
                                     <AddUser
                                         authedUserDetails={authedUserDetails}
+                                    />
+                                )}
+                                />
+                                <Route exact path='/admin-update' render={({ location }) => (
+                                    <AdminUpdateModal
+                                        authedUserDetails={authedUserDetails}
+                                        location={location}
+                                    />
+                                )}
+                                />
+                                <Route exact path='/user-update' render={({ location }) => (
+                                    <UserUpdateModal
+                                        authedUserDetails={authedUserDetails}
+                                        location={location}
                                     />
                                 )}
                                 />

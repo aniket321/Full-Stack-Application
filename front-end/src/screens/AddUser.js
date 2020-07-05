@@ -6,9 +6,9 @@ import AdminUserForm from '../components/AdminUserForm';
 const AddUser = (props) => {
     const { authedUserDetails } = props;
 
-    // if (authedUserDetails.permissions.canCreate === false && authedUserDetails.isadmin === false) {
-    //     return <p>You dont have permission to add an employee</p>
-    // }
+    if (authedUserDetails.permissions.canCreate === false && authedUserDetails.isadmin === false) {
+        return <p>You dont have permission to add an employee</p>
+    }
 
     return (
         authedUserDetails.isadmin === false ?

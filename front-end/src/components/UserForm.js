@@ -60,7 +60,16 @@ const UserForm = () => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await registerUser(userDetails);
+        let newUser = {
+            ...userDetails,
+            permissions: {
+                canRead: true,
+                canUpdate: false,
+                canDelete: false,
+                canCreate: false,
+            }
+        }
+        const response = await registerUser(newUser);
         if (response.status === 201) {
             if (JSON.parse(localStorage.getItem('authedUser')).id === null)
                 alert('Registerd! Please Login to continue')
@@ -69,7 +78,6 @@ const UserForm = () => {
             }
         }
         else {
-            // onError(response.data)
             alert('Some error occured please try again');
         }
         setToHome(true);
@@ -123,7 +131,7 @@ const UserForm = () => {
                 />
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group>
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                     type="password"
