@@ -124,6 +124,10 @@ const AdminUpdateModal = (props) => {
         return <Redirect to="/" />
     }
 
+    if (!authedUserDetails.permissions.canUpdate) {
+        return <p>You do not have permissions to update employee details</p>
+    }
+
     return (
         <Card>
             <Card.Header as="h5" style={{ backgroundColor: "#343A40", color: "#FFF" }}>Update</Card.Header>

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Register = () => {
     return (
         <Card>
-            <Card.Header as="h5">Register</Card.Header>
+            <Card.Header as="h5" style={{ backgroundColor: "#343A40", color: "#FFF" }}>Register</Card.Header>
             <Card.Body>
                 <UserForm />
                 <br />

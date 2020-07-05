@@ -12,7 +12,6 @@ const AdminEmployeeList = (props) => {
 
     async function fetchUsers() {
         const response = await getUsers();
-        console.log(response.data);
         if (response.status === 200) {
             setEmployeeList(response.data);
         }
@@ -23,12 +22,10 @@ const AdminEmployeeList = (props) => {
     }
 
     useEffect(() => {
-        console.log('admin list useeffect');
         fetchUsers();
     }, []);
 
     const handleDelete = async (employee) => {
-        console.log(employee)
         const response = await deleteUser(employee._id);
         if (response.status === 200) {
             await fetchUsers();
@@ -88,7 +85,7 @@ const AdminEmployeeList = (props) => {
                                 }
                             >Update</Button>
                             <Button
-                                disabled={!employee.permissions.canDelete}
+                                disabled={!authedUserDetails.permissions.canDelete}
                                 variant="outline-danger"
                                 onClick={() => handleDelete(employee)}
                                 className="delete-btn"
