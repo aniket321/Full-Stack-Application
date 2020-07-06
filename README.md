@@ -41,6 +41,14 @@ Procedure to use:
 
     • In 'back-end' folder run npm-install to install all the dependencies and node server.js to run the back-end server.
 
+## Screenshots:
+
+<img src="/screenshots/login-page.png" width="350" height="500">
+<img src="/screenshots/home-page.png" width="350" height="500">
+<img src="/screenshots/employee-list.png" width="350" height="500">
+<img src="/screenshots/add-employee.png" width="350" height="500">
+<img src="/screenshots/update-page.png" width="350" height="500">
+
 Tech Stack:
     • React.js.
     • Node.js.
