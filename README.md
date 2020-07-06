@@ -50,7 +50,7 @@ Procedure to use:
 <img src="/screenshots/add-employee.png" width="100%" height="500">
 <img src="/screenshots/update-page.png" width="100%" height="500">
 
-Tech Stack:
+# Tech Stack:
     • React.js.
     • Node.js.
     • React Bootstap.
