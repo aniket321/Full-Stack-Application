@@ -43,11 +43,11 @@ Procedure to use:
 
 ## Screenshots:
 
-<img src="/screenshots/login-page.png" width="350" height="500">
-<img src="/screenshots/home-page.png" width="350" height="500">
-<img src="/screenshots/employee-list.png" width="350" height="500">
-<img src="/screenshots/add-employee.png" width="350" height="500">
-<img src="/screenshots/update-page.png" width="350" height="500">
+<img src="/screenshots/login-page.png" width="100%" height="500">
+<img src="/screenshots/home-page.png" width="100%" height="500">
+<img src="/screenshots/employee-list.png" width="100%" height="500">
+<img src="/screenshots/add-employee.png" width="100%" height="500">
+<img src="/screenshots/update-page.png" width="100%" height="500">
 
 Tech Stack:
     • React.js.
