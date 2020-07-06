@@ -44,6 +44,7 @@ Procedure to use:
 ## Screenshots:
 
 <img src="/screenshots/login-page.png" width="100%" height="500">
+<img src="/screenshots/register-page.png" width="100%" height="500">
 <img src="/screenshots/home-page.png" width="100%" height="500">
 <img src="/screenshots/employee-list.png" width="100%" height="500">
 <img src="/screenshots/add-employee.png" width="100%" height="500">
