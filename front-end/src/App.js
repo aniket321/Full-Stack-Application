@@ -37,6 +37,7 @@ function App() {
     /**
     * @description function to update state when user clicks on login button
     */
+
     const updateAuthedUser = async (response) => {
         let user = {
             id: response.user._id,

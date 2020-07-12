@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom'
 
 const Navigation = (props) => {
 
+    /**
+    * @description function to handle logout button
+    */
     const logout = () => {
         props.handleLogout();
     }
-
-
     return (
         <Navbar bg="dark" variant="dark">
             <Navbar.Brand>Employee Management App</Navbar.Brand>
